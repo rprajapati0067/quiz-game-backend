@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package quiz.auth;
+
+option go_package = "github.com/rprajapati0067/quiz-game-backend/rpc/auth;auth";
+
+service AuthService {
+  rpc Signup(SignupRequest) returns (SignupResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc VerifyPhone(VerifyPhoneRequest) returns (VerifyPhoneResponse);
+}
+
+message SignupRequest {
+  string name = 1;
+  string phone = 2;
+  string email = 3;
+}
+
+message SignupResponse {
+  string user_id = 1;
+}
+
+message LoginRequest {
+  string phone = 1;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message VerifyPhoneRequest {
+  string phone = 1;
+  string otp = 2;
+}
+
+message VerifyPhoneResponse {
+  bool verified = 1;
+}

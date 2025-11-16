@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package quiz.reward;
+
+option go_package = "github.com/rprajapati0067/quiz-game-backend/rpc/reward;reward";
+
+service RewardService {
+  rpc ListAwards(ListAwardsRequest) returns (ListAwardsResponse);
+  rpc ClaimAward(ClaimAwardRequest) returns (ClaimAwardResponse);
+}
+
+message Award {
+  string id = 1;
+  string product = 2;
+  int64 point_cost = 3;
+}
+
+message ListAwardsRequest {}
+
+message ListAwardsResponse {
+  repeated Award awards = 1;
+}
+
+message ClaimAwardRequest {
+  string award_id = 1;
+}
+
+message ClaimAwardResponse {
+  bool success = 1;
+  int64 remaining_points = 2;
+}

@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package quiz.question;
+
+option go_package = "github.com/rprajapati0067/quiz-game-backend/rpc/question;question";
+
+service QuestionService {
+  rpc CreateQuestion(CreateQuestionRequest) returns (CreateQuestionResponse);
+  rpc ListQuestions(ListQuestionsRequest) returns (ListQuestionsResponse);
+  rpc SubmitAnswer(SubmitAnswerRequest) returns (SubmitAnswerResponse);
+}
+
+message Question {
+  string id = 1;
+  string text = 2;
+  repeated string options = 3;
+  int32 correct_index = 4;
+  int32 slot = 5;
+}
+
+message CreateQuestionRequest {
+  string text = 1;
+  repeated string options = 2;
+  int32 correct_index = 3;
+  int32 slot = 4;
+}
+
+message CreateQuestionResponse {
+  Question question = 1;
+}
+
+message ListQuestionsRequest {
+  int32 slot = 1;
+}
+
+message ListQuestionsResponse {
+  repeated Question questions = 1;
+}
+
+message SubmitAnswerRequest {
+  string question_id = 1;
+  int32 selected_index = 2;
+}
+
+message SubmitAnswerResponse {
+  bool correct = 1;
+  int64 updated_points = 2;
+}

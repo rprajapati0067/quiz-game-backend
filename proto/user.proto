@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package quiz.user;
+
+option go_package = "github.com/rprajapati0067/quiz-game-backend/rpc/user;user";
+
+service UserService {
+  rpc Me(MeRequest) returns (MeResponse);
+}
+
+message MeRequest {}
+
+message MeResponse {
+  string user_id = 1;
+  string name = 2;
+  string phone = 3;
+  string email = 4;
+  bool verified = 5;
+  bool blocked = 6;
+  int64 points = 7;
+}
